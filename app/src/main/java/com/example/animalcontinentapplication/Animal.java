@@ -19,6 +19,6 @@ public class Animal {
 
     @Override
     public String toString() {
-        return name + " - " + continent;
+        return name + "\n" + continent;
     }
 }
