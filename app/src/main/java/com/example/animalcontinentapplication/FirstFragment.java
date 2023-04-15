@@ -57,6 +57,34 @@ public class FirstFragment extends Fragment {
         animalList.add(new Animal("Tiger", "Asia"));
         animalList.add(new Animal("Leopard", "Africa"));
 
+// Additional animals
+        animalList.add(new Animal("Gorilla", "Africa"));
+        animalList.add(new Animal("Orangutan", "Asia"));
+        animalList.add(new Animal("Red Panda", "Asia"));
+        animalList.add(new Animal("Camel", "Africa"));
+        animalList.add(new Animal("Llama", "Americas"));
+        animalList.add(new Animal("Moose", "Americas"));
+        animalList.add(new Animal("Hedgehog", "Europa"));
+        animalList.add(new Animal("Sloth", "Americas"));
+        animalList.add(new Animal("Peacock", "Asia"));
+        animalList.add(new Animal("Crocodile", "Australia"));
+        animalList.add(new Animal("Wolf", "Europa"));
+        animalList.add(new Animal("Manta Ray", "Oceans"));
+        animalList.add(new Animal("Flamingo", "Americas"));
+        animalList.add(new Animal("Koala", "Australia"));
+        animalList.add(new Animal("Puma", "Americas"));
+        animalList.add(new Animal("Gazelle", "Africa"));
+        animalList.add(new Animal("Kangaroo", "Australia"));
+        animalList.add(new Animal("Elephant", "Africa"));
+        animalList.add(new Animal("Toucan", "Americas"));
+        animalList.add(new Animal("Lion", "Africa"));
+        animalList.add(new Animal("Grizzly Bear", "Americas"));
+        animalList.add(new Animal("Polar Bear", "Europa"));
+        animalList.add(new Animal("Koala", "Australia"));
+        animalList.add(new Animal("Puma", "Americas"));
+        animalList.add(new Animal("Kangaroo", "Australia"));
+        animalList.add(new Animal("Tiger", "Asia"));
+
         // Initialize adapter
         adapter = new AnimalAdapter(this.getContext(), animalList);
         adapter.setOnAnimalClickListener(animal -> {
