@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<Animal> animalList;
+    private static ArrayList<Animal> animalList;
     private LayoutInflater inflater;
 
     private OnAnimalClickListener listener;
@@ -49,7 +49,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 view = inflater.inflate(R.layout.asia_item, parent, false);
                 break;
         }
-        return new ViewHolder(view);
+        return new ViewHolder(view, listener);
     }
 
     @Override
@@ -88,14 +88,24 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         }
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nameTextView;
         TextView continentTextView;
+        OnAnimalClickListener onAnimalSelectedListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnAnimalClickListener onAnimalSelectedListener) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.animal_name);
             continentTextView = itemView.findViewById(R.id.continent_name);
+            this.onAnimalSelectedListener = onAnimalSelectedListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Animal animal = animalList.get(position);
+            onAnimalSelectedListener.onAnimalClick(animal);
         }
     }
 }

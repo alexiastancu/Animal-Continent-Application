@@ -1,27 +1,17 @@
 package com.example.animalcontinentapplication;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.animalcontinentapplication.databinding.FragmentFirstBinding;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class FirstFragment extends Fragment {
     private ListView listView;
@@ -69,6 +59,19 @@ public class FirstFragment extends Fragment {
 
         // Initialize adapter
         adapter = new AnimalAdapter(this.getContext(), animalList);
+        adapter.setOnAnimalClickListener(animal -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("animal_name", animal.getName());
+            bundle.putString("animal_continent", animal.getContinent());
+
+            SecondFragment animalDetailsFragment = new SecondFragment();
+            animalDetailsFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.nav_host_fragment_content_main, animalDetailsFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
 
         RecyclerView recyclerView = view.findViewById(R.id.listView);
         recyclerView.setAdapter(adapter);
