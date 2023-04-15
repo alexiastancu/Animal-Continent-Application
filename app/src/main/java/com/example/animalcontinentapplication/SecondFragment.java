@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.animalcontinentapplication.databinding.FragmentSecondBinding;
 
@@ -66,8 +66,14 @@ public class SecondFragment extends Fragment {
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+//                NavHostFragment.findNavController(SecondFragment.this)
+//                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                FirstFragment firstFragment = new FirstFragment();
+
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.nav_host_fragment_content_main, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
     }
