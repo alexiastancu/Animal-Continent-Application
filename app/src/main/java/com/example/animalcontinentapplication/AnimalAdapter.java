@@ -1,101 +1,15 @@
 package com.example.animalcontinentapplication;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
-//public class AnimalAdapter extends BaseAdapter {
-//    private Context context;
-//    private ArrayList<Animal> animalList;
-//    private LayoutInflater inflater;
-//
-//    public AnimalAdapter(Context context, ArrayList<Animal> animalList) {
-//        this.context = context;
-//        this.animalList = animalList;
-//        inflater = LayoutInflater.from(context);
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return animalList.size();
-//    }
-//
-//    @Override
-//    public Animal getItem(int position) {
-//        return animalList.get(position);
-//    }
-//
-//    @Override
-//    public long getItemId(int position) {
-//        return position;
-//    }
-//
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        ViewHolder holder;
-//        if (convertView == null) {
-//            // Inflate layout based on continent
-//            String continent = getItem(position).getContinent();
-//            if (continent.equals("Africa")) {
-//                convertView = inflater.inflate(R.layout.africa_item, parent, false);
-//            } else if (continent.equals("Australia")) {
-//                convertView = inflater.inflate(R.layout.australia_item, parent, false);
-//            } else if (continent.equals("Americas")) {
-//                convertView = inflater.inflate(R.layout.americas_item, parent, false);
-//            } else if (continent.equals("Europa")) {
-//                convertView = inflater.inflate(R.layout.europa_item, parent, false);
-//            } else if (continent.equals("Asia")) {
-//                convertView = inflater.inflate(R.layout.asia_item, parent, false);
-//            }
-//
-//            // Initialize holder
-//            holder = new ViewHolder();
-//            holder.nameTextView = convertView.findViewById(R.id.animal_name);
-//            holder.continentTextView = convertView.findViewById(R.id.continent_name);
-//            convertView.setTag(holder);
-//        } else {
-//            holder = (ViewHolder) convertView.getTag();
-//        }
-//
-//        // Set data to views
-//        Animal animal = getItem(position);
-//        holder.nameTextView.setText(animal.getName());
-//        holder.continentTextView.setText(animal.getContinent());
-//
-//        return convertView;
-//    }
-//
-//
-//    @Override
-//    public void onBindViewHolder(ViewHolder holder, int position, ArrayList<Object> payloads) {
-//        // Get the data for the current position
-//        Animal animal = animalList.get(position);
-//
-//        // Check if the view is already bound to this data
-//        if (!holder.nameTextView.getText().equals(animal.getName())) {
-//            // Update the view's data
-//            holder.nameTextView.setText(animal.getName());
-//            holder.continentTextView.setText(animal.getContinent());
-//        }
-//    }
-//
-//    static class ViewHolder {
-//        TextView nameTextView;
-//        TextView continentTextView;
-//    }
-//}
 
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder> {
@@ -103,12 +17,17 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     private ArrayList<Animal> animalList;
     private LayoutInflater inflater;
 
+    private OnAnimalClickListener listener;
+
     public AnimalAdapter(Context context, ArrayList<Animal> animalList) {
         this.context = context;
         this.animalList = animalList;
         inflater = LayoutInflater.from(context);
     }
 
+    public void setOnAnimalClickListener(OnAnimalClickListener listener) {
+        this.listener = listener;
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
